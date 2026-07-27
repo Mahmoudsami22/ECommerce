@@ -14,6 +14,6 @@ namespace ECommerce.Application.Common
         Conflict = 3,
         UnAuthorized = 4,
         Forbidden = 5,
-        InvalidCredentails = 6
+        InvalidCredentials = 6
     }
 }

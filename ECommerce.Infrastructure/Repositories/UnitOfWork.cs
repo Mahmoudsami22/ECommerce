@@ -1,4 +1,4 @@
-﻿using ECommerce.Domain.Commen;
+﻿using ECommerce.Domain.Common;
 using ECommerce.Domain.Contracts;
 using ECommerce.Infrastructure.Data;
 using Microsoft.EntityFrameworkCore;
