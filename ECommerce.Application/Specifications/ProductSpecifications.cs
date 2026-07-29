@@ -21,10 +21,10 @@ namespace ECommerce.Application.Specifications
                 case ProductSortingOptions.NameAsc: AddOrderBy(P => P.Name); break;
                 case ProductSortingOptions.NameDesc: AddOrderByDesc(P => P.Name); break;
                 case ProductSortingOptions.PriceAsc: AddOrderBy(P => P.Price); break;
-                case ProductSortingOptions.PriceDesc: AddOrderByDesc(P => P.Price); break;
-                    
+                case ProductSortingOptions.PriceDesc: AddOrderByDesc(P => P.Price); break;  
                 _: AddOrderBy(P => P.Name); break;
             }
+            ApplyPagination(queryParams.PageSize, queryParams.PageIndex);
 
         }
         public ProductSpecifications(int id) : base(p => p.Id == id)
