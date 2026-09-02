@@ -21,6 +21,8 @@ namespace ECommerce.Domain.Entities.Orders
         public int DeliveryMethodId { get; set; }
 
         public OrderStatus Status { get; set; } = OrderStatus.Pending;
+        public string? PaymentIntentId { get; set; }
+
 
         public decimal SubTotal { get; set; }
 

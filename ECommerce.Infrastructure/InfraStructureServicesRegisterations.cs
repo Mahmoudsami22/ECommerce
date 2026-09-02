@@ -1,6 +1,8 @@
-﻿using ECommerce.Domain.Contracts;
+﻿using ECommerce.Application.Contracts;
+using ECommerce.Domain.Contracts;
 using ECommerce.Domain.Entities.Identity;
 using ECommerce.Infrastructure.Data;
+using ECommerce.Infrastructure.Payments;
 using ECommerce.Infrastructure.Repositories;
 using ECommerce.Infrastructure.Seeding;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
@@ -63,6 +65,7 @@ namespace ECommerce.Infrastructure
                     IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(configuration.GetSection("JWT")["SecretKey"]))
                 };
             });
+            services.AddScoped<IPaymentGateway, StripePaymentGateway>();
 
             return services;
         }
