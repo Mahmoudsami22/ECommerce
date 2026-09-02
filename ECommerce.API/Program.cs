@@ -6,6 +6,7 @@ using ECommerce.Infrastructure.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.FileProviders;
 using static ECommerce.Application.Profiles.PictureUrlResolver;
+using static ECommerce.Application.Services.TokenServices;
 
 namespace ECommerce.API
 {
@@ -23,6 +24,7 @@ namespace ECommerce.API
             // Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
             builder.Services.AddOpenApi();
             builder.Services.Configure<UrlSettings>(builder.Configuration.GetSection("UrlSettings"));
+            builder.Services.Configure<JwtSettings>(builder.Configuration.GetSection("JWT"));
 
             var app = builder.Build();
             await app.MigrationAndSeedAsnyc();
@@ -39,6 +41,7 @@ namespace ECommerce.API
             });
             app.UseHttpsRedirection();
 
+            app.UseAuthentication();
             app.UseAuthorization();
 
 
