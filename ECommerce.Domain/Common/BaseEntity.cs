@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace ECommerce.Domain.Commen
+namespace ECommerce.Domain.Common
 {
     public class BaseEntity<TKey>
     {

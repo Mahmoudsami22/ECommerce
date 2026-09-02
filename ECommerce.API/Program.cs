@@ -4,6 +4,8 @@ using ECommerce.Application;
 using ECommerce.Infrastructure;
 using ECommerce.Infrastructure.Data;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.FileProviders;
+using static ECommerce.Application.Profiles.PictureUrlResolver;
 
 namespace ECommerce.API
 {
@@ -20,6 +22,7 @@ namespace ECommerce.API
 
             // Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
             builder.Services.AddOpenApi();
+            builder.Services.Configure<UrlSettings>(builder.Configuration.GetSection("UrlSettings"));
 
             var app = builder.Build();
             await app.MigrationAndSeedAsnyc();
@@ -28,7 +31,12 @@ namespace ECommerce.API
             {
                 app.MapOpenApi();
             }
-
+            app.UseStaticFiles(new StaticFileOptions
+            {
+                FileProvider = new PhysicalFileProvider(
+                    Path.Combine(builder.Environment.ContentRootPath ,"Files")),
+                RequestPath = "/Files"
+            });
             app.UseHttpsRedirection();
 
             app.UseAuthorization();

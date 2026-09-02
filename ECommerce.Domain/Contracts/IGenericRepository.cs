@@ -1,4 +1,4 @@
-﻿using ECommerce.Domain.Commen;
+﻿using ECommerce.Domain.Common;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -12,7 +12,11 @@ namespace ECommerce.Domain.Contracts
         void Delete(TEntity entity);
 
         Task<TEntity?> GetByIdAsync(TKey id, CancellationToken ct = default);
+        Task<TEntity?> GetByIdWithSpecificationsAsync(ISpecifications<TEntity, TKey> specifications, CancellationToken ct = default);
+
 
         Task<IReadOnlyList<TEntity>> GetAllAsync(CancellationToken ct = default);
+        Task<IReadOnlyList<TEntity>> GetAllWithSpecificationsAsync(ISpecifications<TEntity,TKey> specifications ,CancellationToken ct = default);
+
     }
 }

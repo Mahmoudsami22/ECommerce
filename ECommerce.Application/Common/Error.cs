@@ -18,7 +18,7 @@ namespace ECommerce.Application.Common
             => new Error(code, Description, ErrorType.UnAuthorized);
         public static Error Forbidden(string code = "General.Forbidden", string Description = "General Forbidden Desc")
             => new Error(code, Description, ErrorType.Forbidden);
-        public static Error InvalidCredentails(string code = "General.InvalidCredentails", string Description = "General Invalid Credentails Desc")
-            => new Error(code, Description, ErrorType.InvalidCredentails);
+        public static Error InvalidCredentails(string code = "General.InvalidCredentials", string Description = "General Invalid Credentials Desc")
+            => new Error(code, Description, ErrorType.InvalidCredentials);
     }
 }

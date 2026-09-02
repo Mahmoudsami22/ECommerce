@@ -1,4 +1,4 @@
-﻿using ECommerce.Domain.Commen;
+﻿using ECommerce.Domain.Common;
 using ECommerce.Domain.Contracts;
 using ECommerce.Infrastructure.Data;
 using Microsoft.EntityFrameworkCore;
@@ -40,6 +40,16 @@ namespace ECommerce.Infrastructure.Repositories
             return await dbContext.Set<TEntity>().FindAsync(id, ct);
         }
 
-        
+        public async Task<IReadOnlyList<TEntity>> GetAllWithSpecificationsAsync(ISpecifications<TEntity, TKey> specifications, CancellationToken ct = default)
+        {
+            var Result = SpecificationEvaluator.CreateQuery<TEntity, TKey>(dbContext.Set<TEntity>(), specifications);
+            return await Result.ToListAsync( ct);
+        }
+
+        public async Task<TEntity?> GetByIdWithSpecificationsAsync(ISpecifications<TEntity, TKey> specifications, CancellationToken ct = default)
+        {
+            var Result = SpecificationEvaluator.CreateQuery<TEntity, TKey>(dbContext.Set<TEntity>(), specifications);
+            return await Result.FirstOrDefaultAsync( ct);
+        }
     }
 }
