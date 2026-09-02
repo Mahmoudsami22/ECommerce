@@ -1,4 +1,5 @@
 ﻿using ECommerce.Domain.Contracts;
+using ECommerce.Domain.Entities.Orders;
 using ECommerce.Domain.Entities.Products;
 using ECommerce.Infrastructure.Data;
 using Microsoft.EntityFrameworkCore;
@@ -25,6 +26,7 @@ namespace ECommerce.Infrastructure.Seeding
                 await SeedIfEmptyAsync<ProductsBrand>(SeedPath, "brands.json", ct);
                 await SeedIfEmptyAsync<ProductsType>(SeedPath, "types.json", ct);
                 await SeedIfEmptyAsync<Product>(SeedPath, "products.json", ct);
+                await SeedIfEmptyAsync<DeliveryMethod>(SeedPath, "delivery.json", ct);
 
             }
             catch (Exception ex)
